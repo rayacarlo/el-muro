@@ -3,13 +3,13 @@ import 'firebase/firestore';
 
 // referencing configuration values from .env.development
 var firebaseConfig = {
-  apiKey: process.env.VUE_APP_APIKEY,
-  authDomain: process.env.VUE_APP_AUTHDOMAIN,
-  databaseURL: process.env.VUE_APP_DATABASEURL,
+  apiKey: "AIzaSyDny14HmAGVIW03oTT7jo31uiTQfUwNN5c",
+  authDomain: "rayacarlo-vue.firebaseapp.com",
+  databaseURL: "https://rayacarlo-vue.firebaseio.com",
   projectId: "rayacarlo-vue",
-  storageBucket: process.env.VUE_APP_STORAGEBUCKET,
-  messagingSenderId: process.env.VUE_APP_MESSAGINGSENDERID,
-  appId: process.env.VUE_APP_APPID,
+  storageBucket: "rayacarlo-vue.appspot.com",
+  messagingSenderId: "742964636968",
+  appId: "1:742964636968:web:dbe929af64dd7183d6b41d",
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);

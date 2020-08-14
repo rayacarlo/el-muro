@@ -16,6 +16,7 @@
                 <v-text-field label="Email" prepend-icon="mdi-at" required v-model="registerEmail"/>
                 <v-text-field label="Password" :type="showRegistrationPassword ? 'text' : 'password'" prepend-icon="mdi-lock" :append-icon="showRegistrationPassword ? 'mdi-eye' : 'mdi-eye-off'" @click:append="showRegistrationPassword = !showRegistrationPassword" required v-model="registerPassword"/>
                 <v-text-field label="Confirm password" :type="showConfirmPassword ? 'text' : 'password'" prepend-icon="mdi-lock" :append-icon="showConfirmPassword ? 'mdi-eye' : 'mdi-eye-off'" @click:append="showConfirmPassword = !showConfirmPassword" required v-model="confirmPassword"/>
+                <v-file-input :rules="rules" accept="image/png, image/jpeg, image/bmp" placeholder="Pick an avatar" prepend-icon="mdi-camera" label="Avatar" v-model="registerAvatar"></v-file-input>
               </v-form>
             </v-card-text>
             <v-card-actions>
@@ -55,11 +56,15 @@ export default {
     registerEmail: '',
     registerPassword: '',
     confirmPassword:'',
+    registerAvatar: '',
     showRegistrationPassword: false,
     showConfirmPassword: false,
     loginEmail: '',
     loginPassword: '',
     showLoginPassword: false,
+    rules: [
+      value => !value || value.size < 2000000 || 'Avatar size should be less than 2 MB!',
+    ],
   }),
   computed: {
     error() {
@@ -75,7 +80,8 @@ export default {
       const dataAuth = {
         name: this.registerName,
         email: this.registerEmail,
-        password: this.registerPassword
+        password: this.registerPassword,
+        avatar: this.registerAvatar
       };
       this.$store.dispatch('register', dataAuth)
     },

@@ -34,14 +34,15 @@ const store = new Vuex.Store({
       .then(function (response) {
         console.log(response);
         firebase.auth().currentUser.updateProfile({
-          displayName: data.name
+          displayName: data.name,
+          photoURL: data.avatar
         })
       })
       .then((response) => {
         console.log(response)
         context.commit('set_error', null);
-        context.commit('set_user', {email: data.email, name: data.name});
-        router.push('/');
+        context.commit('set_user', {email: data.email, name: data.name, avatar: data.avatar});
+        router.push('/home');
       })
       .catch(function (error) {
         context.commit('set_error', error.message);
@@ -52,11 +53,11 @@ const store = new Vuex.Store({
       firebase.auth().signInWithEmailAndPassword(data.email, data.password)
       .then(function (response) {
         console.log(response);
-        console.log(data.email);
         var name = firebase.auth().currentUser.displayName;
+        var avatar = firebase.auth().currentUser.photoURL;
           context.commit('set_error', null);
-          context.commit('set_user',{email: data.email, name: name});
-          router.push('/');
+          context.commit('set_user', {email: data.email, name: name, avatar: avatar});
+          router.push('/home');
       })
       .catch(function(error) {
         context.commit('set_error', error.message);
@@ -68,7 +69,7 @@ const store = new Vuex.Store({
       .then(() => {
         context.commit('set_error', null);
         context.commit('set_user', null);
-        router.push('/auth');
+        router.push('/');
       })
     }
   }

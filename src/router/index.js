@@ -9,12 +9,12 @@ Vue.use(VueRouter);
 export default new VueRouter({
   routes: [
     {
-      path: '/',
+      path: '/home',
       name: 'home',
       component: Home
     },
     {
-      path: '/auth',
+      path: '/',
       name: 'auth',
       component: Auth
     }
